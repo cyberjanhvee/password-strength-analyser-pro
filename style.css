@@ -1,0 +1,399 @@
+/* ========== BASE ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1a001d;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* Mouse Glow Background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  background: radial-gradient(
+      circle at var(--x) var(--y),
+      rgba(192, 132, 252, 0.15),
+      transparent 250px
+  );
+  z-index: -1;
+}
+
+/* ========== HEADER & ANIMATION ========== */
+.card {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.title {
+  font-size: 70px;
+  font-weight: 800;
+  font-style: italic;
+  
+  /* The Animated Gradient */
+  background: linear-gradient(90deg, #7c3aed, #d8b4fe, #ffffff, #7c3aed);
+  background-size: 300% auto; /* Large size for movement */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  
+  animation: moveTitle 4s linear infinite; /* Restored Animation */
+  letter-spacing: -2px;
+}
+
+@keyframes moveTitle {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+h6 {
+  color: #d8b4fe;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+/* Welcome Text */
+h5 {
+  color: #c084fc; /* Bright Purple */
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Paragraph Instructions */
+p {
+  text-align: center;
+  font-size: 16px;
+  color: #e9d5ff; /* Soft Lavender (Easier to read) */
+  line-height: 1.8; /* More breathing room between lines */
+  margin: 0 auto 40px auto; /* Centers the block & pushes input down */
+  max-width: 600px;
+}
+
+p strong {
+  color: white;
+  font-weight: bold;
+}
+
+/* ========== MAIN CARD ========== */
+.input-area {
+  width: 90%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Input Field */
+#password {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  outline: none;
+  transition: 0.3s;
+}
+
+#password:focus {
+  border-color: #c084fc;
+  box-shadow: 0 0 15px rgba(192, 132, 252, 0.3);
+}
+
+/* Button */
+.analyze-btn {
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(90deg, #7c3aed, #c084fc);
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.3s;
+  font-size: 16px;
+}
+
+.analyze-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.4);
+}
+
+/* ========== DASHBOARD (Hidden Initially) ========== */
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboard-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* ========== 1. CIRCULAR CHART ========== */
+.chart-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart-container .box {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* SVG Circle */
+.chart-container .box .percent {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.chart-container .box .percent svg {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  transform: rotate(-90deg); /* Start from top */
+}
+
+.chart-container .box .percent svg circle {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke-width: 10;
+  stroke: #2a2a2a; /* Dark track color */
+  transform: translate(5px, 5px);
+  stroke-linecap: round;
+}
+
+/* The Active Ring (animated via JS) */
+.chart-container .box .percent svg circle:nth-child(2) {
+  stroke: var(--clr, #4ade80);
+  stroke-dasharray: 440;
+  stroke-dashoffset: 440; /* Start empty */
+  transition: stroke-dashoffset 1.5s ease-out, stroke 0.5s;
+  filter: drop-shadow(0 0 5px var(--clr));
+}
+
+/* Center Number */
+.number {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.number h2 {
+  font-size: 42px;
+  color: white;
+}
+
+.number h2 span {
+  font-size: 18px;
+  color: #888;
+}
+
+/* Status Label (Weak/Strong) */
+.text-label {
+  position: absolute;
+  bottom: -30px; /* Moved down to be visible */
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #aaa;
+  transition: 0.3s;
+}
+
+/* ========== 2. CHECKLIST ========== */
+.requirements {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 15px;
+  min-width: 220px;
+}
+
+.req-title {
+  color: #bbb;
+  font-size: 14px;
+  margin-bottom: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.req-list {
+  list-style: none;
+}
+
+.req-list li {
+  margin-bottom: 10px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.req-list li.valid {
+  color: white;
+  font-weight: 500;
+}
+
+.req-list li.valid i {
+  color: #4ade80;
+  filter: drop-shadow(0 0 5px #4ade80);
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .title { font-size: 48px; }
+  .dashboard-row { flex-direction: column; align-items: center; }
+  .requirements { width: 100%; }
+}
+
+
+
+/* =========================================
+   📱 MOBILE FIX – DO NOT TOUCH ABOVE
+========================================= */
+
+@media (max-width: 768px) {
+
+  body {
+    padding: 15px;
+  }
+
+  /* Title */
+  .title {
+    font-size: 42px;
+    letter-spacing: 0;
+  }
+
+  /* small subtitle */
+  h6 {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  /* welcome */
+  h5 {
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  /* paragraph */
+  p {
+    font-size: 14px;
+    padding: 0 10px;
+    margin-bottom: 25px;
+  }
+
+  /* main card */
+  .input-area {
+    width: 100%;
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  /* password field */
+  #password {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  /* button */
+  .analyze-btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  /* dashboard stacking */
+  .dashboard-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* circle smaller */
+  .chart-container .box,
+  .chart-container .box .percent,
+  .chart-container .box .percent svg {
+    width: 120px;
+    height: 120px;
+  }
+
+  .number h2 {
+    font-size: 28px;
+  }
+
+  .text-label {
+    bottom: -25px;
+    font-size: 14px;
+  }
+
+  /* requirement box */
+  .requirements {
+    width: 100%;
+  }
+}

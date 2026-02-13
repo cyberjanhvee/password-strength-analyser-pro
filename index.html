@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="card">
+        <h1 class="title">PassStrength</h1>
+    </div>
+
+    <h6>Welcome to PassStrength</h6>
+
+    <p>
+        Here we provide info on how strong your password is.<br>
+        Is it easy to decode or difficult?<br>
+        <strong>Enter your password below to analyze it.</strong>
+    </p>
+
+    <div class="input-area">
+        
+        <input 
+            type="password" 
+            id="password" 
+            placeholder="Type your password here..."
+        >
+
+        <button class="analyze-btn" onclick="analyzePassword()">
+            Check My Password
+        </button>
+
+        <div id="output-container" class="hidden">
+            
+            <div class="dashboard-row">
+                
+                <div class="chart-container">
+                    <div class="box">
+                        <div class="percent">
+                            <svg>
+                                <circle cx="70" cy="70" r="70"></circle>
+                                <circle cx="70" cy="70" r="70" id="progress-ring"></circle>
+                            </svg>
+                            <div class="number">
+                                <h2 id="score-text">0<span>%</span></h2>
+                            </div>
+                        </div>
+                        <h2 class="text-label" id="status-label">Security</h2>
+                    </div>
+                </div>
+
+                <div class="requirements">
+                    <p class="req-title">Safety Metrics:</p>
+                    <ul class="req-list">
+                        <li id="req-length"><i class="fas fa-circle"></i> 8+ Characters</li>
+                        <li id="req-number"><i class="fas fa-circle"></i> At least 1 Number</li>
+                        <li id="req-symbol"><i class="fas fa-circle"></i> At least 1 Symbol</li>
+                        <li id="req-upper"><i class="fas fa-circle"></i> Uppercase & Lowercase</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="bg-shapes"></div>
+
+    <script src="logic.js"></script>
+
+    <script>
+        document.addEventListener("mousemove", e => {
+            document.body.style.setProperty("--x", e.clientX + "px");
+            document.body.style.setProperty("--y", e.clientY + "px");
+        });
+        
+        // Hide dashboard when typing new password
+        document.getElementById("password").addEventListener("input", function(){
+            document.getElementById("output-container").classList.remove("show");
+            document.getElementById("output-container").classList.add("hidden");
+            // Reset ring animation
+            document.getElementById("progress-ring").style.strokeDashoffset = 440;
+        });
+    </script>
+
+</body>
+</html>
