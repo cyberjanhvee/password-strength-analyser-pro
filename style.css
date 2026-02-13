@@ -397,3 +397,72 @@ p strong {
     width: 100%;
   }
 }
+/* ============================= */
+/* 📱 MOBILE RESPONSIVE FIX */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+  body {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  h5 {
+    font-size: 22px;
+    padding: 0 10px;
+  }
+
+  p {
+    font-size: 16px;
+    margin: 10px 0;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  /* container */
+  .input-area,
+  .card,
+  .main,
+  .wrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+  }
+
+  /* password box */
+  #password {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  /* button */
+  .analyze,
+  button {
+    width: 100%;
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  /* result text */
+  #result {
+    font-size: 20px;
+  }
+
+  /* charts / meter */
+  canvas,
+  .chart,
+  .meter {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* safety card */
+  .safety,
+  .metrics {
+    padding: 15px;
+  }
+}
