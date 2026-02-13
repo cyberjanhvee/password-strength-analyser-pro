@@ -1,4 +1,11 @@
-/* ========== BASE ========== */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -464,5 +471,83 @@ p strong {
   .safety,
   .metrics {
     padding: 15px;
+  }
+}
+
+
+/* =================================
+   📱 FINAL MOBILE CONTROL PANEL
+================================= */
+
+@media (max-width: 768px) {
+
+  body {
+    padding: 15px;
+  }
+
+  /* title */
+  .title {
+    font-size: 40px;
+    letter-spacing: 0;
+  }
+
+  h5 {
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+
+  p {
+    font-size: 14px;
+    margin: 10px auto 20px auto;
+    padding: 0 10px;
+  }
+
+  /* main glass card */
+  .input-area {
+    width: 100%;
+    padding: 18px;
+    border-radius: 15px;
+  }
+
+  /* input */
+  #password {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  /* button */
+  .analyze-btn {
+    width: 100%;
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  /* dashboard becomes vertical */
+  .dashboard-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* circle resize */
+  .chart-container .box,
+  .chart-container .box .percent,
+  .chart-container .box .percent svg {
+    width: 120px;
+    height: 120px;
+  }
+
+  .number h2 {
+    font-size: 26px;
+  }
+
+  .text-label {
+    bottom: -20px;
+    font-size: 13px;
+  }
+
+  /* requirement list */
+  .requirements {
+    width: 100%;
   }
 }
