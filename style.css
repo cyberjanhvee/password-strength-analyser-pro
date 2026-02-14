@@ -1,10 +1,4 @@
-* {
-  box-sizing: border-box;
-}
 
-html, body {
-  overflow-x: hidden;
-}
 
 * {
   margin: 0;
@@ -476,65 +470,67 @@ p strong {
 
 
 /* =================================
-   📱 FINAL MOBILE CONTROL PANEL
+   📱 MOBILE – SINGLE SOURCE OF TRUTH
 ================================= */
-
 @media (max-width: 768px) {
 
+  /* general breathing room */
   body {
-    padding: 15px;
+    padding: 16px;
   }
 
-  /* title */
+  /* giant logo was breaking width */
   .title {
-    font-size: 40px;
+    font-size: 38px;
     letter-spacing: 0;
   }
 
-  h5 {
-    font-size: 14px;
+  h6 {
+    font-size: 12px;
     letter-spacing: 2px;
+    margin-bottom: 15px;
   }
 
+  /* intro text */
   p {
     font-size: 14px;
-    margin: 10px auto 20px auto;
-    padding: 0 10px;
+    margin-bottom: 20px;
+    padding: 0 5px;
   }
 
-  /* main glass card */
+  /* glass card */
   .input-area {
     width: 100%;
     padding: 18px;
-    border-radius: 15px;
+    border-radius: 14px;
+    gap: 15px;
   }
 
   /* input */
   #password {
-    width: 100%;
     font-size: 16px;
     padding: 12px;
   }
 
   /* button */
   .analyze-btn {
-    width: 100%;
     font-size: 14px;
     padding: 12px;
   }
 
-  /* dashboard becomes vertical */
+  /* VERY IMPORTANT → stack items */
   .dashboard-row {
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    gap: 25px;
   }
 
-  /* circle resize */
+  /* shrink circle */
   .chart-container .box,
   .chart-container .box .percent,
   .chart-container .box .percent svg {
-    width: 120px;
-    height: 120px;
+    width: 115px;
+    height: 115px;
   }
 
   .number h2 {
@@ -542,12 +538,18 @@ p strong {
   }
 
   .text-label {
-    bottom: -20px;
+    bottom: -18px;
     font-size: 13px;
   }
 
-  /* requirement list */
+  /* checklist full width */
   .requirements {
     width: 100%;
+    padding: 15px;
+  }
+}
+@media (hover: none) {
+  body::before {
+    display: none;
   }
 }
